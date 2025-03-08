@@ -20,11 +20,15 @@
   });
 
   // Add Geocoder for Location Search
+  const seattleBbox = [-122.4597, 47.4818, -122.2244, 47.7341];
+
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     mapboxgl: mapboxgl,
-    marker: false
+    marker: false,
+    bbox: seattleBbox
   });
+
   document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
 
       // Handle Geocoder Selection
@@ -150,7 +154,6 @@
 
           // If "All" is selected for travel time, just filter by cuisine and price
           if (travelTime === "all") {
-              console.log("ℹ️ 'All' selected: Filtering by cuisine and price only.");
 
               // Remove previous isochrone if any
               clearPreviousSelections();
